@@ -4,6 +4,7 @@
   - Fix some items not being retrieved due to a primitive type issue.
   - Fix certain protected assets unexpectedly showing up.
   - Properly wait for the permission request result.
+  - Improve the artwork query quality
 
 #### All platforms
   - Use the right durations, in seconds.

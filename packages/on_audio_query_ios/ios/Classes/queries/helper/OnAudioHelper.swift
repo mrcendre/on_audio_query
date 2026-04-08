@@ -201,7 +201,7 @@ func loadPlaylistItem(playlist: MPMediaItemCollection) -> [String: Any?] {
     // Get the artwork from the first song inside the playlist
     var artwork: Data?
     if playlist.items.count >= 1 {
-        artwork = playlist.items[0].artwork?.image(at: CGSize(width: 150, height: 150))?.jpegData(compressionQuality: 1)
+        artwork = playlist.items[0].artwork?.image(at: CGSize(width: 1000, height: 1000))?.jpegData(compressionQuality: 1)
     }
     //
     let id = playlist.value(forProperty: MPMediaPlaylistPropertyPersistentID) as? NSNumber ?? NSNumber(value: 0)
