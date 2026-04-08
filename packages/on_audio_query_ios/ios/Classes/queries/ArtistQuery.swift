@@ -23,6 +23,12 @@ class ArtistQuery {
             forProperty: MPMediaItemPropertyIsCloudItem
         )
         cursor.addFilterPredicate(cloudFilter)
+        
+        let protectedAssetFilter = MPMediaPropertyPredicate(
+            value: false,
+            forProperty: MPMediaItemPropertyHasProtectedAsset
+        )
+        cursor.addFilterPredicate(protectedAssetFilter)
 
         loadArtists(cursor: cursor.collections)
     }

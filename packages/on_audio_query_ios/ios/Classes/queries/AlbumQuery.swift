@@ -27,6 +27,12 @@ class AlbumQuery {
         )
         cursor.addFilterPredicate(cloudFilter)
         
+        let protectedAssetFilter = MPMediaPropertyPredicate(
+            value: false,
+            forProperty: MPMediaItemPropertyHasProtectedAsset
+        )
+        cursor.addFilterPredicate(protectedAssetFilter)
+        
         Log.type.debug("Query config: ")
         Log.type.debug("\tsortType: \(sortType)")
         

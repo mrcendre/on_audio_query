@@ -91,6 +91,13 @@ class ArtworkQuery {
         )
         cursor?.addFilterPredicate(cloudFilter)
             
+        let protectedAssetFilter = MPMediaPropertyPredicate(
+            value: false,
+            forProperty: MPMediaItemPropertyHasProtectedAsset
+        )
+        
+        cursor?.addFilterPredicate(protectedAssetFilter)
+        
         // Query everything in background for a better performance.
         loadArtwork(cursor: cursor, size: size, format: format, uri: uri, quality: quality)
     }

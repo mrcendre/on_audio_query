@@ -22,6 +22,12 @@ class PlaylistQuery {
         )
         cursor.addFilterPredicate(cloudFilter)
         
+        let protectedAssetFilter = MPMediaPropertyPredicate(
+            value: false,
+            forProperty: MPMediaItemPropertyHasProtectedAsset
+        )
+        cursor.addFilterPredicate(protectedAssetFilter)
+        
         // Query everything in background for a better performance.
         loadPlaylists(cursor: cursor.collections)
     }

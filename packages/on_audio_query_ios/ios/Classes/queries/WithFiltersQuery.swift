@@ -65,6 +65,12 @@ class WithFiltersQuery {
                 forProperty: MPMediaItemPropertyIsCloudItem
             )
             cursor?.addFilterPredicate(cloudFilter)
+            
+            let protectedAssetFilter = MPMediaPropertyPredicate(
+                value: false,
+                forProperty: MPMediaItemPropertyHasProtectedAsset
+            )
+            cursor?.addFilterPredicate(protectedAssetFilter)
                 
             // Query everything in background for a better performance.
             loadItemsWithFilter(cursor: cursor!, type: withType)
@@ -75,6 +81,12 @@ class WithFiltersQuery {
                 forProperty: MPMediaItemPropertyIsCloudItem
             )
             cursor?.addFilterPredicate(cloudFilter)
+            
+            let protectedAssetFilter = MPMediaPropertyPredicate(
+                value: false,
+                forProperty: MPMediaItemPropertyHasProtectedAsset
+            )
+            cursor?.addFilterPredicate(protectedAssetFilter)
                 
             // Query everything in background for a better performance.
             loadPlaylistsWithFilter(cursor: cursor!.collections, argVal: argVal)

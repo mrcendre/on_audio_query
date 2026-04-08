@@ -39,6 +39,12 @@ class AudioFromQuery {
                 forProperty: MPMediaItemPropertyIsCloudItem
             )
             cursor?.addFilterPredicate(cloudFilter)
+            
+            let protectedAssetFilter = MPMediaPropertyPredicate(
+                value: false,
+                forProperty: MPMediaItemPropertyHasProtectedAsset
+            )
+            cursor?.addFilterPredicate(protectedAssetFilter)
                 
             // Query everything in background for a better performance.
             loadQueryAudiosFrom(cursor: cursor!)
@@ -52,6 +58,12 @@ class AudioFromQuery {
                 forProperty: MPMediaItemPropertyIsCloudItem
             )
             cursor?.addFilterPredicate(cloudFilter)
+            
+            let protectedAssetFilter = MPMediaPropertyPredicate(
+                value: false,
+                forProperty: MPMediaItemPropertyHasProtectedAsset
+            )
+            cursor?.addFilterPredicate(protectedAssetFilter)
                 
             loadSongsFromPlaylist(cursor: cursor!.collections)
         }
