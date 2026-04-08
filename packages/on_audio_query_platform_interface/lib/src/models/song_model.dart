@@ -6,7 +6,7 @@ class SongModel {
   final Map<dynamic, dynamic> _info;
 
   /// Return song [id]
-  int get id => _info["_id"];
+  String get id => _info["_id"];
 
   /// Return song [data]
   String get data => _info["_data"];
@@ -27,13 +27,13 @@ class SongModel {
   String? get album => _info["album"];
 
   /// Return song [albumId]
-  int? get albumId => _info["album_id"];
+  String? get albumId => _info["album_id"];
 
   /// Return song [artist]
   String? get artist => _info["artist"];
 
   /// Return song [artistId]
-  int? get artistId => _info["artist_id"];
+  String? get artistId => _info["artist_id"];
 
   /// Return song [genre]
   ///
@@ -45,7 +45,7 @@ class SongModel {
   ///
   /// Important:
   ///   * Only Api >= 30/Android 11
-  int? get genreId => _info["genre_id"];
+  String? get genreId => _info["genre_id"];
 
   /// Return song [bookmark]
   int? get bookmark => _info["bookmark"];

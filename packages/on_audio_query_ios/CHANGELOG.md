@@ -1,3 +1,7 @@
+## 1.1.0+1
+
+- Use String to handle identifiers from media properties to avoid higher bits being truncated by the Flutter runtime.
+
 ## 1.1.0
 
 - See more [on_audio_query - CHANGELOG](https://github.com/LucJosin/on_audio_query/blob/main/on_audio_query/CHANGELOG.md).

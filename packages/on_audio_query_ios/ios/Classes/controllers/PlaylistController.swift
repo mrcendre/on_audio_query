@@ -35,8 +35,8 @@ class PlaylistController {
     }
     
     func addToPlaylist() {
-        let playlistId = args["playlistId"] as! Int
-        let audioId = args["audioId"] as! Int
+        let playlistId = args["playlistId"] as! String
+        let audioId = args["audioId"] as! String
         
         Log.type.debug("Playlist info: ")
         Log.type.debug("\tid: \(playlistId)")
@@ -54,7 +54,7 @@ class PlaylistController {
             if playlist != nil {
                 Log.type.debug("Found playlist! Name: \(playlist?.name ?? "Unknown")")
                 
-                playlist!.addItem(withProductID: String(audioId), completionHandler: { error in
+                playlist!.addItem(withProductID: audioId, completionHandler: { error in
                     let hasError = error != nil
                     
                     if hasError {
@@ -72,7 +72,7 @@ class PlaylistController {
         }
     }
     
-    private func loadPlaylist(id: Int) -> MPMediaPlaylist? {
+    private func loadPlaylist(id: String) -> MPMediaPlaylist? {
         let cursor = MPMediaQuery.playlists()
         
         // Create a filter using the playlist id.

@@ -370,7 +370,7 @@ class OnAudioQuery {
   ///
   /// See more about [platforms support](https://github.com/LucJosin/on_audio_query/blob/main/PLATFORMS.md)
   Future<Uint8List?> queryArtwork(
-    int id,
+    String id,
     ArtworkType type, {
     ArtworkFormat? format,
     int? size,

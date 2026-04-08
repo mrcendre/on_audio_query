@@ -29,7 +29,7 @@ class ArtworkQuery : ViewModel() {
 
     private val helper = QueryHelper()
     private var type: Int = -1
-    private var id: Number = 0
+    private var id: String = "0"
     private var quality: Int = 100
     private var size: Int = 200
     private var showDetailedLog: Boolean = false
@@ -48,7 +48,7 @@ class ArtworkQuery : ViewModel() {
         this.resolver = context.contentResolver
         this.showDetailedLog = PluginProvider.showDetailedLog
 
-        id = call.argument<Number>("id")!!
+        id = call.argument<String>("id")!!
 
         // If the 'size' is null, will be '200'.
         size = call.argument<Int>("size")!!

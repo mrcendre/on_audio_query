@@ -18,8 +18,16 @@ class ArtworkQuery {
     //
     // Not the best solution but, at least here we can select differents formats and size.
     func queryArtwork() {
+                
         // The 'id' of the [Song] or [Album].
-        let id = args["id"] as! Int
+        let idString = args["id"] as! String
+        let id = UInt64(idString)
+        
+        guard id != nil else {
+            Log.type.warning("The given media identifier could not be parsed!")
+            result(nil)
+            return
+        }
         
         // The 'size' of the image.
         let size = args["size"] as! Int

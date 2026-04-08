@@ -40,7 +40,7 @@ class GenreQuery {
                     var genreData = loadGenreItem(genre: genre)
                     
                     // Count and add the number of songs for every genre.
-                    let tmpMediaCount = getMediaCount(type: 0, id: genreData["_id"] as! UInt64)
+                    let tmpMediaCount = getMediaCount(type: 0, id: genreData["_id"] as! String)
                     genreData["num_of_songs"] = tmpMediaCount
                     
                     listOfGenres.append(genreData)

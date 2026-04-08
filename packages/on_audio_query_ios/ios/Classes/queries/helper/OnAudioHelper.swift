@@ -6,18 +6,18 @@ public func loadSongItem(song: MPMediaItem) -> [String: Any?] {
     let fileExt = song.assetURL?.pathExtension ?? ""
     let sizeInBytes = song.value(forProperty: "fileSize") as? Int
     let songData: [String: Any?] = [
-        "_id": song.persistentID,
+        "_id": "\(song.persistentID)",
         "_data": song.assetURL?.absoluteString,
         "_uri": song.assetURL?.absoluteString,
         "_display_name": "\(song.artist ?? "") - \(song.title ?? "").\(fileExt)",
         "_display_name_wo_ext": "\(song.artist ?? "") - \(song.title ?? "")",
         "_size": sizeInBytes,
         "album": song.albumTitle,
-        "album_id": song.albumPersistentID,
+        "album_id": "\(song.albumPersistentID)",
         "artist": song.artist,
-        "artist_id": song.artistPersistentID,
+        "artist_id": "\(song.artistPersistentID)",
         "genre": song.genre,
-        "genre_id": song.genrePersistentID,
+        "genre_id": "\(song.genrePersistentID)",
         "bookmark": Int(song.bookmarkTime),
         "composer": song.composer,
         "date_added": Int(song.dateAdded.timeIntervalSince1970),
@@ -71,10 +71,10 @@ func loadAlbumItem(album: MPMediaItemCollection) -> [String: Any?] {
     let albumData: [String: Any?] = [
         "numsongs": album.count,
         "artist": album.items[0].albumArtist,
-        "_id": album.persistentID,
+        "_id": "\(album.items[0].albumPersistentID)",
         "album": album.items[0].albumTitle,
-        "artist_id": album.items[0].artistPersistentID,
-        "album_id": album.items[0].albumPersistentID
+        "artist_id": "\(album.items[0].artistPersistentID)",
+        "album_id": "\(album.items[0].albumPersistentID)"
     ]
     return albumData
 }
@@ -118,7 +118,7 @@ func loadArtistItem(artist: MPMediaItemCollection) -> [String: Any?] {
 
     //
     let artistData: [String: Any?] = [
-        "_id": artist.items[0].artistPersistentID,
+        "_id": "\(artist.items[0].artistPersistentID)",
         "artist": artist.items[0].artist,
         "number_of_albums": finalCount.count,
         "number_of_tracks": artist.count
@@ -156,7 +156,7 @@ public func formatArtistList(args: [String: Any], allArtists: [[String: Any?]]) 
 func loadGenreItem(genre: MPMediaItemCollection) -> [String: Any?] {
     //
     let genreData: [String: Any?] = [
-        "_id": genre.items[0].genrePersistentID,
+        "_id": "\(genre.items[0].genrePersistentID)",
         "name": genre.items[0].genre,
         "number_of_songs": genre.count
     ]
@@ -174,15 +174,15 @@ public func formatGenreList(args: [String: Any], allGenres: [[String: Any?]]) ->
     return tempList
 }
 
-public func getMediaCount(type: Int, id: UInt64) -> Int {
+public func getMediaCount(type: Int, id: String) -> Int {
     var cursor: MPMediaQuery? = nil
     var filter: MPMediaPropertyPredicate? = nil
 
     if type == 0 {
-        filter = MPMediaPropertyPredicate(value: id, forProperty: MPMediaItemPropertyGenrePersistentID)
+        filter = MPMediaPropertyPredicate(value: UInt64(id), forProperty: MPMediaItemPropertyGenrePersistentID)
         cursor = MPMediaQuery.genres()
     } else {
-        filter = MPMediaPropertyPredicate(value: id, forProperty: MPMediaPlaylistPropertyPersistentID)
+        filter = MPMediaPropertyPredicate(value: UInt64(id), forProperty: MPMediaPlaylistPropertyPersistentID)
         cursor = MPMediaQuery.playlists()
     }
 
@@ -204,11 +204,11 @@ func loadPlaylistItem(playlist: MPMediaItemCollection) -> [String: Any?] {
         artwork = playlist.items[0].artwork?.image(at: CGSize(width: 150, height: 150))?.jpegData(compressionQuality: 1)
     }
     //
-    let id = playlist.value(forProperty: MPMediaPlaylistPropertyPersistentID) as? Int
+    let id = playlist.value(forProperty: MPMediaPlaylistPropertyPersistentID) as? NSNumber ?? NSNumber(value: 0)
     let dateAdded = playlist.value(forProperty: "dateCreated") as? Date
     let dateModified = playlist.value(forProperty: "dateModified") as? Date
     let playlistData: [String: Any?] = [
-        "_id": id,
+        "_id": "\(id.uint64Value)",
         "name": playlist.value(forProperty: MPMediaPlaylistPropertyName),
         "date_added": Int(dateAdded!.timeIntervalSince1970),
         "date_modified": Int(dateModified!.timeIntervalSince1970),

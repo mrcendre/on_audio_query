@@ -34,16 +34,14 @@ class PlaylistQuery {
             // into a [Map<String, dynamic>], all keys are based on [Android]
             // platforms.
             for playlist in cursor {
-                // Ignore cloud items.
-                if !playlist.items[0].isCloudItem, playlist.items[0].assetURL != nil {
-                    var playlistData = loadPlaylistItem(playlist: playlist)
-                    
-                    // Count and add the number of songs for every genre.
-                    let tmpMediaCount = getMediaCount(type: 1, id: playlistData["_id"] as! UInt64)
-                    playlistData["num_of_songs"] = tmpMediaCount
-                    
-                    listOfPlaylists.append(playlistData)
-                }
+                var playlistData = loadPlaylistItem(playlist: playlist)
+                
+                // Count and add the number of songs for every genre.
+                let tmpMediaCount = getMediaCount(type: 1, id: playlistData["_id"] as! String)
+                playlistData["num_of_songs"] = tmpMediaCount
+                
+                listOfPlaylists.append(playlistData)
+
             }
             
             DispatchQueue.main.async {

@@ -6,7 +6,7 @@ class GenreModel {
   final Map<dynamic, dynamic> _info;
 
   /// Return genre [id]
-  int get id => _info["_id"];
+  String get id => _info["_id"];
 
   /// Return [genre] name
   String get genre => _info["name"];

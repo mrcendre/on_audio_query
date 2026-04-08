@@ -32,17 +32,7 @@ class QueryHelper {
     //This method will separate [String] from [Int]
     fun loadSongItem(itemProperty: String, cursor: Cursor): Any? {
         return when (itemProperty) {
-            // Int
-            "_id",
-            "album_id",
-            "artist_id" -> {
-                // The [id] from Android >= 30/R is a [Long] instead of [Int].
-                if (Build.VERSION.SDK_INT >= 30) {
-                    cursor.getLong(cursor.getColumnIndex(itemProperty))
-                } else {
-                    cursor.getInt(cursor.getColumnIndex(itemProperty))
-                }
-            }
+            // Formerly Int, now returned as String: "_id", "album_id", "artist_id"
             "_size",
             "bookmark",
             "date_added",
@@ -68,15 +58,7 @@ class QueryHelper {
     //This method will separate [String] from [Int]
     fun loadAlbumItem(itemProperty: String, cursor: Cursor): Any? {
         return when (itemProperty) {
-            "_id",
-            "artist_id" -> {
-                // The [album] id from Android >= 30/R is a [Long] instead of [Int].
-                if (Build.VERSION.SDK_INT >= 30) {
-                    cursor.getLong(cursor.getColumnIndex(itemProperty))
-                } else {
-                    cursor.getInt(cursor.getColumnIndex(itemProperty))
-                }
-            }
+            // Formerly Int, now returned as String: "_id", "artist_id"
             "numsongs" -> cursor.getInt(cursor.getColumnIndex(itemProperty))
             else -> cursor.getString(cursor.getColumnIndex(itemProperty))
         }
@@ -85,7 +67,7 @@ class QueryHelper {
     //This method will separate [String] from [Int]
     fun loadPlaylistItem(itemProperty: String, cursor: Cursor): Any? {
         return when (itemProperty) {
-            "_id",
+            // Formerly Int, now returned as String: "_id",
             "date_added",
             "date_modified" -> cursor.getLong(cursor.getColumnIndex(itemProperty))
             else -> cursor.getString(cursor.getColumnIndex(itemProperty))
@@ -95,14 +77,7 @@ class QueryHelper {
     //This method will separate [String] from [Int]
     fun loadArtistItem(itemProperty: String, cursor: Cursor): Any? {
         return when (itemProperty) {
-            "_id" -> {
-                // The [artist] id from Android >= 30/R is a [Long] instead of [Int].
-                if (Build.VERSION.SDK_INT >= 30) {
-                    cursor.getLong(cursor.getColumnIndex(itemProperty))
-                } else {
-                    cursor.getInt(cursor.getColumnIndex(itemProperty))
-                }
-            }
+            // Formerly Int, now returned as String: "_id"
             "number_of_albums",
             "number_of_tracks" -> cursor.getInt(cursor.getColumnIndex(itemProperty))
             else -> cursor.getString(cursor.getColumnIndex(itemProperty))
@@ -112,14 +87,7 @@ class QueryHelper {
     //This method will separate [String] from [Int]
     fun loadGenreItem(itemProperty: String, cursor: Cursor): Any? {
         return when (itemProperty) {
-            "_id" -> {
-                // The [genre] id from Android >= 30/R is a [Long] instead of [Int].
-                if (Build.VERSION.SDK_INT >= 30) {
-                    cursor.getLong(cursor.getColumnIndex(itemProperty))
-                } else {
-                    cursor.getInt(cursor.getColumnIndex(itemProperty))
-                }
-            }
+            // Formerly Int, now returned as String: "_id"
             else -> cursor.getString(cursor.getColumnIndex(itemProperty))
         }
     }
@@ -138,7 +106,7 @@ class QueryHelper {
 
     // Ignore the [Data] deprecation because this plugin support older versions.
     @Suppress("DEPRECATION")
-    fun loadFirstItem(type: Int, id: Number, resolver: ContentResolver): String? {
+    fun loadFirstItem(type: Int, id: String, resolver: ContentResolver): String? {
 
         // We use almost the same method to 'query' the first item from Song/Album/Artist and we
         // need to use a different uri when 'querying' from playlist.
@@ -191,7 +159,7 @@ class QueryHelper {
                         MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
                         arrayOf(MediaStore.Audio.Media.DATA, MediaStore.Audio.Media._ID),
                         selection,
-                        arrayOf(id.toString()),
+                        arrayOf(id),
                         null
                     )
                 }

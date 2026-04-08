@@ -6,7 +6,7 @@ class AlbumModel {
   final Map<dynamic, dynamic> _info;
 
   /// Return album [id]
-  int get id => _info["_id"];
+  String get id => _info["_id"];
 
   /// Return album [album]
   String get album => _info["album"];
@@ -15,7 +15,7 @@ class AlbumModel {
   String? get artist => _info["artist"];
 
   /// Return album [artistId]
-  int? get artistId => _info["artist_id"];
+  String? get artistId => _info["artist_id"];
 
   /// Return album [numOfSongs]
   int get numOfSongs => _info["numsongs"];

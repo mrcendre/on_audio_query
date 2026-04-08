@@ -41,7 +41,7 @@ class PlaylistController {
     //
     fun removePlaylist() {
         this.resolver = context.contentResolver
-        val playlistId = call.argument<Int>("playlistId")!!
+        val playlistId = call.argument<String>("playlistId")!!
 
         //Check if Playlist exists based in Id
         if (!checkPlaylistId(playlistId)) result.success(false)
@@ -56,8 +56,8 @@ class PlaylistController {
     //TODO Fix error on Android 10
     fun addToPlaylist() {
         this.resolver = context.contentResolver
-        val playlistId = call.argument<Int>("playlistId")!!
-        val audioId = call.argument<Int>("audioId")!!
+        val playlistId = call.argument<String>("playlistId")!!
+        val audioId = call.argument<String>("audioId")!!
 
 
         //Check if Playlist exists based in Id
@@ -88,8 +88,8 @@ class PlaylistController {
     //TODO Add option to use a list
     fun removeFromPlaylist() {
         this.resolver = context.contentResolver
-        val playlistId = call.argument<Int>("playlistId")!!
-        val audioId = call.argument<Int>("audioId")!!
+        val playlistId = call.argument<String>("playlistId")!!
+        val audioId = call.argument<String>("audioId")!!
 
         //Check if Playlist exists based on Id
         if (!checkPlaylistId(playlistId)) result.success(false)
@@ -100,7 +100,7 @@ class PlaylistController {
                     playlistId.toLong()
                 )
                 val where = MediaStore.Audio.Playlists.Members._ID + "=?"
-                resolver.delete(uri, where, arrayOf(audioId.toString()))
+                resolver.delete(uri, where, arrayOf(audioId))
                 result.success(true)
             } catch (e: Exception) {
                 Log.i("on_audio_error: ", e.toString())
@@ -112,7 +112,7 @@ class PlaylistController {
     //TODO("Need tests")
     fun moveItemTo() {
         this.resolver = context.contentResolver
-        val playlistId = call.argument<Int>("playlistId")!!
+        val playlistId = call.argument<String>("playlistId")!!
         val from = call.argument<Int>("from")!!
         val to = call.argument<Int>("to")!!
 
@@ -127,7 +127,7 @@ class PlaylistController {
     //
     fun renamePlaylist() {
         this.resolver = context.contentResolver
-        val playlistId = call.argument<Int>("playlistId")!!
+        val playlistId = call.argument<String>("playlistId")!!
         val newPlaylistName = call.argument<String>("newPlName")!!
 
         //Check if Playlist exists based in Id
@@ -141,7 +141,7 @@ class PlaylistController {
     }
 
     //Return true if playlist already exist, false if don't exist
-    private fun checkPlaylistId(plId: Int): Boolean {
+    private fun checkPlaylistId(plId: String): Boolean {
         val cursor = resolver.query(
             uri,
             arrayOf(MediaStore.Audio.Playlists.NAME, MediaStore.Audio.Playlists._ID),
@@ -150,7 +150,7 @@ class PlaylistController {
             null
         )
         while (cursor != null && cursor.moveToNext()) {
-            val playListId = cursor.getInt(1) //Id
+            val playListId = cursor.getString(1) //Id
             if (playListId == plId) return true
         }
         cursor?.close()

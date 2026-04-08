@@ -186,7 +186,7 @@ class MethodChannelOnAudioQuery extends OnAudioQueryPlatform {
 
   @override
   Future<Uint8List?> queryArtwork(
-    int id,
+    String id,
     ArtworkType type, {
     ArtworkFormat? format,
     int? size,

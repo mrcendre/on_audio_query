@@ -30,7 +30,7 @@ class AudioFromQuery : ViewModel() {
 
     //Main parameters
     private val helper = QueryHelper()
-    private var pId = 0
+    private var pId = "0"
     private var pUri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI
 
     // None of this methods can be null.
@@ -144,7 +144,7 @@ class AudioFromQuery : ViewModel() {
             checkName(plName = info.toString())
         }
 
-        if (!checkedName) pId = info.toString().toInt()
+        if (!checkedName) pId = info.toString()
 
         pUri = if (type == 4 || type == 5) {
             MediaStore.Audio.Genres.Members.getContentUri("external", pId.toLong())
@@ -203,7 +203,7 @@ class AudioFromQuery : ViewModel() {
             val name = cursor.getString(0)
 
             if (name != null && name == plName || name == genreName) {
-                pId = cursor.getInt(1)
+                pId = cursor.getString(1)
                 return true
             }
         }

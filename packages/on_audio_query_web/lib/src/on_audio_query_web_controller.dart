@@ -595,7 +595,7 @@ class _OnAudioQueryWebController {
   }
 
   Future<Uint8List?> queryArtwork(
-    int id,
+    String id,
     ArtworkType type, [
     ArtworkFormat? format,
     int? size,
@@ -605,7 +605,7 @@ class _OnAudioQueryWebController {
     List<SongModel> allSongs = await querySongs();
 
     for (var song in allSongs) {
-      int tmpId = -1;
+      String tmpId = '-1';
       switch (type) {
         case ArtworkType.AUDIO:
           tmpId = "${song.title} : ${song.artist}".generateAudioId();

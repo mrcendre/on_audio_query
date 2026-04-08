@@ -14,9 +14,14 @@ class AudioFromQuery {
     func queryAudiosFrom() {
         //
         type = args["type"] as! Int
-        let wh3re = args["where"] as Any
+        var wh3re = args["where"] as Any
         // The sortType.
         let sortType = args["sortType"] as? Int ?? 0
+
+        if (type == 1 || type == 3 || type == 5) && wh3re is String {
+            let id = UInt64(wh3re as! String)
+            wh3re = id
+        }
         
         // Choose the type(To match android side, let's call "cursor").
         var cursor: MPMediaQuery? = checkAudiosFrom(type: type, where: wh3re)
@@ -108,7 +113,7 @@ class AudioFromQuery {
                     }
                 } else {
                     // Check if playlist id is equal to defined id
-                    if iPlaylist.persistentID == iWhere as! Int {
+                    if "\(iPlaylist.persistentID)" == (iWhere as! String) {
                         // For each song, format and add to the list
                         for song in playlist.items {
                             // If the song file don't has a assetURL, is a Cloud item.

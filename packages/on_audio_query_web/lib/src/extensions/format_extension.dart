@@ -105,8 +105,8 @@ extension OnIdGenerator on String {
   ///
   /// int finalId = int.parse(idAsString); //839711074105000
   /// ```
-  int generateAudioId() {
-    if (isEmpty) return 0;
+  String generateAudioId() {
+    if (isEmpty) return '0';
     List<String> splitted = split(" : ");
 
     //
@@ -124,7 +124,7 @@ extension OnIdGenerator on String {
 
     // This will convert to a int value and at the same time complete the id.
     // If [idAsString] < 15, complete with [0].
-    return int.parse(idAsString.padRight(15, "0"));
+    return idAsString.padRight(15, '0');
   }
 
   /// Web platform are limited and we have to manually get the audios files.
@@ -149,8 +149,8 @@ extension OnIdGenerator on String {
   ///
   /// int finalId = int.parse(idAsString); //741111061050000
   /// ```
-  int generateId() {
-    if (isEmpty) return 0;
+  String generateId() {
+    if (isEmpty) return '0';
 
     // Avoid problems with [title] less than 5.
     int itemLength = length > 5 ? 5 : length;
@@ -162,7 +162,7 @@ extension OnIdGenerator on String {
 
     // This will convert to a int value and at the same time complete the id.
     // If [idAsString] < 15, complete with [0].
-    return int.parse(idAsString.padRight(15, "0"));
+    return idAsString.padRight(15, '0');
   }
 
   bool containsLower(String argsVal) {
