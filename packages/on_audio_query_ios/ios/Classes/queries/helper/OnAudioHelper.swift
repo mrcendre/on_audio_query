@@ -22,7 +22,7 @@ public func loadSongItem(song: MPMediaItem) -> [String: Any?] {
         "composer": song.composer,
         "date_added": Int(song.dateAdded.timeIntervalSince1970),
         "date_modified": 0,
-        "duration": Int(song.playbackDuration * 1000),
+        "duration": Int(song.playbackDuration),
         "title": song.title,
         "track": song.albumTrackNumber,
         "file_extension": fileExt

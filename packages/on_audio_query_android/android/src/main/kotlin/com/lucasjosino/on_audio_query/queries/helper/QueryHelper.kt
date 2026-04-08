@@ -37,8 +37,11 @@ class QueryHelper {
             "bookmark",
             "date_added",
             "date_modified",
-            "duration",
             "track" -> cursor.getInt(cursor.getColumnIndex(itemProperty))
+
+            // The duration is returned in milliseconds, convert it to seconds.
+            "duration" -> cursor.getInt(cursor.getColumnIndex(itemProperty)) / 1000
+
             // Boolean
             "is_alarm",
             "is_audiobook",
