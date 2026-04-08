@@ -113,7 +113,7 @@ class ArtworkQuery {
             if uri == 0 {
                 item = cursor!.items?.first
             } else {
-                item = cursor!.collections?.first?.items[0]
+                item = cursor!.collections?.first?.items.first
             }
             
             let cgSize = CGSize(width: size, height: size)

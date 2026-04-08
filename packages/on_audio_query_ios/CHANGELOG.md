@@ -3,6 +3,7 @@
 - Use String to handle identifiers from media properties to avoid higher bits being truncated by the Flutter runtime.
 - Added missing filters to exclude cloud items from queries.
 - Use the right duration, in seconds.
+- Fix a crash when matching empty collections.
 
 ## 1.1.0
 
