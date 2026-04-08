@@ -1,4 +1,5 @@
 import MediaPlayer
+import Flutter
 
 class PermissionController {
     public static func checkPermission() -> Bool {
@@ -10,7 +11,7 @@ class PermissionController {
         }
     }
     
-    public static func requestPermission() -> Bool {
+    public static func requestPermission(_ result : @escaping FlutterResult) {
         Log.type.debug("Requesting permissions.")
         Log.type.debug("iOS Version: \(ProcessInfo().operatingSystemVersion.majorVersion)")
         
@@ -18,8 +19,7 @@ class PermissionController {
         MPMediaLibrary.requestAuthorization { status in
             isPermissionGranted = status == .authorized
             Log.type.debug("Permission accepted: \(isPermissionGranted)")
+            result(isPermissionGranted)
         }
-        
-        return isPermissionGranted
     }
 }

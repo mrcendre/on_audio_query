@@ -4,6 +4,7 @@
 - Added missing filters to exclude cloud items from queries.
 - Use the right duration, in seconds.
 - Fix a crash when matching empty collections.
+- Properly wait for permission request result.
 
 ## 1.1.0
 

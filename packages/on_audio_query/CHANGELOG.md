@@ -1,8 +1,12 @@
 ## [[2.9.0+1](https://github.com/mrcendre/on_audio_query/)]
 
-- Fix some items not being retrieved on iOS.
-- Fix certain protected assets unexpectedly showing up on iOS.
-- Use the right durations, in seconds.
+#### iOS
+  - Fix some items not being retrieved due to a primitive type issue.
+  - Fix certain protected assets unexpectedly showing up.
+  - Properly wait for the permission request result.
+
+#### All platforms
+  - Use the right durations, in seconds.
 
 ## [[2.9.0](https://github.com/LucJosin/on_audio_query/releases/tag/2.9.0)]
 
