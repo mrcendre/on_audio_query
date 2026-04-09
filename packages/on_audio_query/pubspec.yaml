@@ -24,10 +24,29 @@ environment:
 
 dependencies:
   # on_audio_query
-  on_audio_query_platform_interface: ^1.7.0
-  on_audio_query_web: ^1.6.0
-  on_audio_query_ios: ^1.1.0
-  on_audio_query_android: ^1.1.0
+  on_audio_query_platform_interface: 
+    git: 
+      url: https://github.com/mrcendre/on_audio_query.git
+      path: packages/on_audio_query_platform_interface
+      ref: git-pubspec
+
+  on_audio_query_web: 
+    git: 
+      url: https://github.com/mrcendre/on_audio_query.git
+      path: packages/on_audio_query_web
+      ref: git-pubspec
+
+  on_audio_query_ios: 
+    git: 
+      url: https://github.com/mrcendre/on_audio_query.git
+      path: packages/on_audio_query_ios
+      ref: git-pubspec
+  
+  on_audio_query_android: 
+    git: 
+      url: https://github.com/mrcendre/on_audio_query.git
+      path: packages/on_audio_query_android
+      ref: git-pubspec
 
   # Flutter
   flutter:
