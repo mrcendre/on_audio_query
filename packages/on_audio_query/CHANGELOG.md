@@ -8,6 +8,7 @@
 
 #### All platforms
   - Use the right durations, in seconds.
+  - Fixed crashes
 
 ## [[2.9.0](https://github.com/LucJosin/on_audio_query/releases/tag/2.9.0)]
 

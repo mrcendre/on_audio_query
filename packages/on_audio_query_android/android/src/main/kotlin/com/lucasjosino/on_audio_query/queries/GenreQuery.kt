@@ -79,11 +79,10 @@ class GenreQuery : ViewModel() {
                     genreData[genreMedia] = helper.loadGenreItem(genreMedia, cursor)
                 }
 
-                // Count and add the number of songs for every genre.
-                val mediaCount = helper.getMediaCount(0, genreData["_id"].toString(), resolver)
-                genreData["num_of_songs"] = mediaCount
-
                 if (genreData["name"] != null && genreData["_id"] != 0) {
+                    // Count and add the number of songs for every genre.
+                    val mediaCount = helper.getMediaCount(0, genreData["_id"].toString(), resolver)
+                    genreData["num_of_songs"] = mediaCount
                     genreList.add(genreData)
                 }
             }
